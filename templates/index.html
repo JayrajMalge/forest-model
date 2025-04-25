@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>ModelPV</h1>
+        </nav>
+    </header>
+    <div class="main">
+        <form action="/predict" method="post">
+            <input type="number" name="temperature" placeholder="Enter Temperature">
+            <input type="number" name="RH" placeholder="Relative Humidity">
+            <input type="number" name="ws" placeholder="Wind speed in km/h">
+            <input type="number" name="rain" placeholder="total rain in mm">
+            <input type="number" min="0" max="100" step="0.01" name="FFMC" placeholder="Fine Fuel Moisture Code">
+            <input type="number" min="0" max="100" step="0.01" name="DMC" placeholder="Duff Moisture Code">
+            <input type="number" min="0" max="100" step="0.01" name="ISI" placeholder="Initial Spread Index">
+            <select name="region">
+                <option value=1>Bejaia Region</option>
+                <option value=2>Sidi-Bel Abbes Region</option>
+            </select>
+            <select name="classes">
+                <option value=1>Fire</option>
+                <option value=2>Not Fire</option>
+            </select>
+            <input type="submit" id="submit" value="Predict" id="" style="width: 20%;">
+        </form>
+        {% if predict!=0 %}
+        <div class="result">
+            <h4>FWI is {{predict}}</h4>
+        </div>
+        {% endif %}
+    </div>
+    <footer>
+        <p>copyright @2024</p>
+    </footer>
+</body>
+</html>
